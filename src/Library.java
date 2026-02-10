@@ -1,35 +1,54 @@
 public class Library {
-
-    private Book[] books;
-    private int count;
+    private Book[] books; 
+    private int count = 0;
 
     public Library(int capacity) {
-        books = new Book[capacity];
-        count = 0;
+        books = new Book[capacity]; 
     }
 
-    // TODO: Add book to array
     public void addBook(Book book) {
-        // implement
+        if (count < books.length) {
+            books[count] = book; 
+            count++;
+        } else {
+            System.out.println("Library is full!");
+        }
     }
 
-    // TODO: Display all books
     public void displayBooks() {
-        // implement
+        if (count == 0) {
+            System.out.println("Library is empty.");
+            return;
+        }
+        for (int i = 0; i < count; i++) {
+            System.out.println(books[i]); 
+        }
     }
 
-    // TODO: Search book by title
     public Book searchByTitle(String title) {
-        return null;
+        for (int i = 0; i < count; i++) {
+            if (books[i].getTitle().equalsIgnoreCase(title)) {
+                return books[i]; 
+            }
+        }
+        return null; 
     }
 
-    // TODO: Borrow book by title
     public void borrowBook(String title) {
-        // implement
+        Book found = searchByTitle(title);
+        if (found != null) {
+            found.borrowBook(); 
+        } else {
+            System.out.println("Book not found!");
+        }
     }
 
-    // TODO: Return book by title
     public void returnBook(String title) {
-        // implement
+        Book found = searchByTitle(title);
+        if (found != null) {
+            found.returnBook();
+        } else {
+            System.out.println("Book not found!");
+        }
     }
 }

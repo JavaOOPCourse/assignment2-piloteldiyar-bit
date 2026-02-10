@@ -10,7 +10,7 @@ public class Main {
         int choice;
 
         do {
-            System.out.println("\n===== Library Menu =====");
+            System.out.println("\nLibrary Menu");
             System.out.println("1. Add book");
             System.out.println("2. Add e-book");
             System.out.println("3. Display all books");
@@ -21,40 +21,53 @@ public class Main {
             System.out.print("Choose option: ");
 
             choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
-
+            scanner.nextLine();
             switch (choice) {
 
                 case 1:
-                    // TODO: Read input and add Book
+                    System.out.print("Enter title: ");
+                    String t1 = scanner.nextLine();
+                    System.out.print("Enter author: ");
+                    String a1 = scanner.nextLine();
+                    System.out.print("Enter year: ");
+                    int y1 = scanner.nextInt();
+                    library.addBook(new Book(t1, a1, y1)); 
                     break;
 
                 case 2:
-                    // TODO: Read input and add EBook
-                    break;
-
-                case 3:
-                    library.displayBooks();
+                    System.out.print("Enter title: ");
+                    String t2 = scanner.nextLine();
+                    System.out.print("Enter author: ");
+                    String a2 = scanner.nextLine();
+                    System.out.print("Enter year: ");
+                    int y2 = scanner.nextInt();
+                    System.out.print("Enter file size (MB): ");
+                    double fs = scanner.nextDouble();
+                    library.addBook(new EBook(t2, a2, y2, fs));
                     break;
 
                 case 4:
-                    // TODO: Search book
+                    System.out.print("Enter title to search: ");
+                    String st = scanner.nextLine();
+                    Book found = library.searchByTitle(st); 
+                    if (found != null) {
+                        System.out.println("Found: " + found);
+                    } else {
+                        System.out.println("Not found.");
+                    }
                     break;
 
                 case 5:
-                    // TODO: Borrow book
+                    System.out.print("Enter title to borrow: ");
+                    String bt = scanner.nextLine();
+                    library.borrowBook(bt);
                     break;
 
                 case 6:
-                    // TODO: Return book
+                    System.out.print("Enter title to return: ");
+                    String rt = scanner.nextLine();
+                    library.returnBook(rt); 
                     break;
-
-                case 7:
-                    System.out.println("Goodbye!");
-                    break;
-
-                default:
-                    System.out.println("Invalid option!");
             }
 
         } while (choice != 7);
